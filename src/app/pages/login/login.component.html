@@ -1,0 +1,130 @@
+<div class="login-page">
+
+  <div class="login-card">
+
+    <!-- النجوم جوه الفورم -->
+    <div class="stars-bg">
+      <div class="stars"></div>
+      <div class="shooting-star"></div>
+      <div class="shooting-star s2"></div>
+    </div>
+
+    <div class="login-head">
+      <h1>Welcome back</h1>
+      <p>Please sign in to continue</p>
+    </div>
+
+    <form
+      class="login-form"
+      [formGroup]="loginForm"
+      (ngSubmit)="onSubmit()"
+      autocomplete="off"
+    >
+
+      <!-- Email -->
+      <label class="field">
+        <span>Email</span>
+        <input
+          type="email"
+          name="login_email"
+          placeholder="name@email.com"
+          formControlName="email"
+          autocomplete="new-email"
+        />
+
+        <small
+          class="error"
+          *ngIf="
+            loginForm.get('email')?.touched &&
+            loginForm.get('email')?.invalid
+          "
+        >
+          <span *ngIf="loginForm.get('email')?.errors?.['required']">
+            Email is required
+          </span>
+          <span *ngIf="loginForm.get('email')?.errors?.['email']">
+            Invalid email format
+          </span>
+        </small>
+      </label>
+
+      <!-- Password -->
+      <label class="field">
+        <span>Password</span>
+        <input
+          type="password"
+          name="login_password"
+          placeholder="••••••••"
+          formControlName="password"
+          autocomplete="new-password"
+        />
+
+        <small
+          class="error"
+          *ngIf="
+            loginForm.get('password')?.touched &&
+            loginForm.get('password')?.invalid
+          "
+        >
+          <span *ngIf="loginForm.get('password')?.errors?.['required']">
+            Password is required
+          </span>
+          <span *ngIf="loginForm.get('password')?.errors?.['minlength']">
+            Password must be at least 6 characters
+          </span>
+        </small>
+      </label>
+
+      <!-- Remember + Forgot -->
+      <div class="row-between">
+        <label class="check">
+          <input type="checkbox" formControlName="remember" />
+          <span>Remember me</span>
+        </label>
+
+        <a class="link" routerLink="/forget-password">
+          Forget Password?
+        </a>
+      </div>
+
+      <!-- Submit -->
+      <button
+        class="btn"
+        type="submit"
+        [disabled]="loginForm.invalid || isSubmitting"
+      >
+        {{ isSubmitting ? "Logging in..." : "Log in" }}
+      </button>
+
+      <p class="error api-error" *ngIf="errorMsg">
+        {{ errorMsg }}
+      </p>
+
+      <div class="divider">
+        <span>Or</span>
+      </div>
+
+      <button
+        class="btn btn-ghost"
+        type="button"
+        (click)="loginWithGoogle()"
+      >
+        Continue with Google
+      </button>
+
+      <button
+        class="btn btn-ghost"
+        type="button"
+        (click)="loginWithFacebook()"
+      >
+        Continue with FaceBook
+      </button>
+
+      <p class="footer">
+        Don’t have an account?
+        <a class="link" routerLink="/register">Create one</a>
+      </p>
+
+    </form>
+  </div>
+</div>

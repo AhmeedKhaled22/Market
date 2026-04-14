@@ -1,0 +1,147 @@
+<div class="login-page">
+  <div class="login-card">
+<div class="stars-bg">
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+
+  <!-- shooting star -->
+  <div class="shooting-star"></div>
+</div>
+    <!-- ✅ العنوان -->
+    <div class="login-head">
+      <h1>Create account</h1>
+      <p>Fill your details to continue</p>
+    </div>
+
+    <form
+      class="login-form"
+      [formGroup]="registerForm"
+      (ngSubmit)="submitRegisterForm()"
+      novalidate
+      autocomplete="off"
+    >
+
+      <!-- Name -->
+      <label class="field">
+        <span>Your Name</span>
+        <input
+          formControlName="name"
+          type="text"
+          name="register_name"
+          autocomplete="off"
+          placeholder="Enter Your Name"
+        />
+
+        <small class="error">
+          <ng-container *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid">
+            <ng-container *ngIf="registerForm.get('name')?.hasError('required')">Name is required</ng-container>
+            <ng-container *ngIf="!registerForm.get('name')?.hasError('required') && registerForm.get('name')?.hasError('minlength')">
+              Min 3 characters
+            </ng-container>
+            <ng-container *ngIf="!registerForm.get('name')?.hasError('required') && !registerForm.get('name')?.hasError('minlength') && registerForm.get('name')?.hasError('maxlength')">
+              Max 20 characters
+            </ng-container>
+          </ng-container>
+        </small>
+      </label>
+
+      <!-- Email -->
+      <label class="field">
+        <span>Email</span>
+        <input
+          formControlName="email"
+          type="email"
+          name="register_email"
+          autocomplete="new-email"
+          placeholder="Enter email"
+        />
+
+        <small class="error">
+          <ng-container *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+            <ng-container *ngIf="registerForm.get('email')?.hasError('required')">Email is required</ng-container>
+            <ng-container *ngIf="!registerForm.get('email')?.hasError('required') && registerForm.get('email')?.hasError('email')">
+              Enter valid email
+            </ng-container>
+          </ng-container>
+        </small>
+      </label>
+
+      <!-- Password -->
+      <label class="field">
+        <span>Password</span>
+        <input
+          formControlName="password"
+          type="password"
+          name="register_password"
+          autocomplete="new-password"
+          placeholder="Password"
+        />
+
+        <small class="error">
+          <ng-container *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+            <ng-container *ngIf="registerForm.get('password')?.hasError('required')">Password required</ng-container>
+            <ng-container *ngIf="!registerForm.get('password')?.hasError('required') && registerForm.get('password')?.hasError('pattern')">
+              Start with capital (min 7)
+            </ng-container>
+          </ng-container>
+        </small>
+      </label>
+
+      <!-- Age -->
+      <label class="field">
+        <span>Age</span>
+        <input
+          formControlName="age"
+          type="number"
+          name="register_age"
+          autocomplete="off"
+          placeholder="Age"
+        />
+
+        <small class="error">
+          <ng-container *ngIf="registerForm.get('age')?.touched && registerForm.get('age')?.invalid">
+            <ng-container *ngIf="registerForm.get('age')?.hasError('required')">Age required</ng-container>
+            <ng-container *ngIf="!registerForm.get('age')?.hasError('required') && registerForm.get('age')?.hasError('pattern')">
+              Between 10 - 80
+            </ng-container>
+          </ng-container>
+        </small>
+      </label>
+
+      <!-- Phone -->
+      <label class="field">
+        <span>Phone</span>
+        <input
+          formControlName="phone"
+          type="tel"
+          name="register_phone"
+          autocomplete="off"
+          placeholder="Phone"
+        />
+
+        <small class="error">
+          <ng-container *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid">
+            <ng-container *ngIf="registerForm.get('phone')?.hasError('required')">Phone required</ng-container>
+            <ng-container *ngIf="!registerForm.get('phone')?.hasError('required') && registerForm.get('phone')?.hasError('pattern')">
+              Starts with 010/011/012/015
+            </ng-container>
+          </ng-container>
+        </small>
+      </label>
+
+      <button class="btn" type="submit" [disabled]="isloading || registerForm.invalid">
+        {{ isloading ? 'Creating...' : 'Create account' }}
+      </button>
+
+      <p class="success" *ngIf="succesMsg">Done</p>
+      <p class="error api-error" *ngIf="errorMsg">{{ errorMsg }}</p>
+
+      <p class="footer">
+        Already have an account?
+        <a routerLink="/login">Log in</a>
+      </p>
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,146 @@
+<!-- ================= LOADING SPINNER ================= -->
+<div *ngIf="isLoading" class="loading-spinner">
+  <div class="loader"></div>
+</div>
+
+<!-- ================= PAGE CONTENT ================= -->
+<div *ngIf="!isLoading" class="hero-wrapper reveal">
+  <!-- ================= HERO ================= -->
+  <section class="full-screen-bg" aria-label="Hero Section">
+    <div class="container-fluid px-5">
+      <div class="endorsed mb-3 reveal">
+        <a
+          href="#"
+          class="d-inline-flex align-items-center gap-2 endorsed-link"
+        >
+          <strong>Endorsed by Apple</strong>
+          <img src="/assets/images/Apple_logo_grey.svg.png" alt="Apple" />
+        </a>
+      </div>
+
+      <h1 class="lead mb-3 reveal">
+        All tech products.<br />
+        One place.
+      </h1>
+
+      <div class="text reveal">
+        <p>Shop all gadgets related to making your work life easy.</p>
+        <p>70% cash back guarantee!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HERO MOBILE ================= -->
+  <section class="hero-image-mobile hero-text-mobile"></section>
+
+  <section class="hero-content-mobile hero-text-mobile">
+    <div class="container-fluid px-4">
+      <div class="endorsed mb-2 reveal">
+        <a
+          href="/shop"
+          class="d-inline-flex align-items-center gap-2 endorsed-link"
+        >
+          <strong>Endorsed by Apple</strong>
+          <img src="/assets/images/Apple_logo_grey.svg.png" alt="Apple" />
+        </a>
+      </div>
+
+      <h1 class="lead mb-2 reveal">
+        All tech products.<br />
+        One place.
+      </h1>
+
+      <div class="text reveal">
+        <p>Shop all gadgets related to making your work life easy.</p>
+        <p>70% cash back guarantee!</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ================= BLACK FRIDAY + FEATURES ================= -->
+<section *ngIf="!isLoading" class="scroll-section">
+  <div class="scrolling-bar diagonal">
+    <div class="scrolling-track">
+      <div class="scrolling-content">
+        ⚡ Black Friday Deals! ⚡ Black Friday Deals! ⚡ Black Friday Deals! ⚡
+        Black Friday Deals! ⚡ Black Friday Deals! ⚡ Black Friday Deals! ⚡
+        Black Friday Deals! ⚡ Black Friday Deals! ⚡ Black Friday Deals! ⚡
+        Black Friday Deals! ⚡ Black Friday Deals! ⚡ Black Friday Deals!
+      </div>
+      <div class="scrolling-content" aria-hidden="true">
+        ⚡ Black Friday Deals! ⚡ Black Friday Deals! ⚡ Black Friday Deals! ⚡
+        Black Friday Deals! ⚡ Black Friday Deals! ⚡ Black Friday Deals! ⚡
+        Black Friday Deals! ⚡ Black Friday Deals! ⚡ Black Friday Deals! ⚡
+        Black Friday Deals! ⚡ Black Friday Deals! ⚡ Black Friday Deals!
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid px-5 features-inside">
+    <h2 class="section-title text-white">
+      Trending 🔥 <a href="/shop">See all ></a>
+    </h2>
+
+    <div class="features-wrapper">
+      <div
+        class="feature-box  reveal"
+        *ngFor="let category of categories"
+[routerLink]="['/shop', category.slug]"
+        >
+        <div class="product-info">
+          <span class="product-title">{{ category.name }}</span>
+
+          <div class="card-meta">
+            <span class="product-count">
+              {{ category.productCount }} Products
+            </span>
+
+            <span class="arrow">→</span>
+          </div>
+        </div>
+        <div class="imges">
+          <span class="badge">Trending</span>
+          <img [src]="category.image" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container-fluid px-5 features-inside">
+  <h3 class="reviews text-center mb-5">
+    <span>Customer Reviews</span>
+  </h3>
+
+  <div class="row g-4">
+
+    <div class="col-lg-4 col-md-6" *ngFor="let review of reviews">
+      <div class="review-card reveal">
+
+        <div class="review-header">
+          <div class="review-user">
+            <img [src]="'https://i.pravatar.cc/100?u=' + review.reviewerName"  alt="user"/>
+            <h4>{{ review.reviewerName }}</h4>
+          </div>
+
+          <div class="stars">
+            <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
+              <span [class.filled]="i < review.rating">★</span>
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="review-title">
+          Customer Experience
+        </div>
+
+        <div class="review-comment">
+          {{ review.comment }}
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>

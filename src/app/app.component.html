@@ -1,0 +1,24 @@
+<header>
+  <app-navbar></app-navbar>
+</header>
+
+<main class="app-main">
+  <router-outlet></router-outlet>
+</main>
+
+<!-- زرار الرجوع لأعلى -->
+<button class="scroll-top" (click)="scrollToTop()" *ngIf="showScroll">
+  <i class="fas fa-arrow-up"></i>
+</button>
+<!-- زرار واتساب ثابت -->
+<a
+  href="https://wa.me/201008942400"
+  class="whatsapp-float"
+  target="_blank"
+  rel="noopener"
+  aria-label="Chat on WhatsApp"
+>
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<app-footer *ngIf="!hideFooter"></app-footer>

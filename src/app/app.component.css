@@ -1,0 +1,61 @@
+/* ================= Root Layout ================= */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #00000000 0%, #121318 100%);
+}
+
+/* Header */
+header {
+  flex: 0 0 auto;
+}
+
+/* Main */
+main.app-main {
+  flex: 1 1 auto;
+  background: #0b0b0f;
+  min-height: 0;
+}
+
+/* Footer */
+footer {
+  flex: 0 0 auto;
+  background: #0b0b0f;
+}
+
+/* ================= Spinner ================= */
+.loading-spinner {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loader {
+  font-size: 2rem;
+  font-family: monospace;
+  font-weight: bold;
+  background: radial-gradient(circle closest-side, #000 94%, #0000)
+    right / calc(200% - 1em) 100%;
+  animation: l24 1s infinite alternate linear;
+}
+
+.loader::before {
+  content: "Loading...";
+  line-height: 1em;
+  color: #0000;
+  background: inherit;
+  background-image: radial-gradient(circle closest-side, #fff 94%, #000);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@keyframes l24 {
+  100% {
+    background-position: left;
+  }
+}

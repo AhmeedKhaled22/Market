@@ -1,0 +1,62 @@
+<div class="cart-page">
+  <div class="wishlist-container">
+    <h2 class="title">Your Cart</h2>
+
+    <!-- EMPTY -->
+    <div *ngIf="cartItems.length === 0" class="empty">
+      <i class="fa fa-shopping-cart"></i>
+      <h3>Your cart is empty</h3>
+      <p>Add products to your cart</p>
+      <button routerLink="/shop">Go To Shop</button>
+    </div>
+
+    <!-- PRODUCTS -->
+    <div class="wishlist-grid" *ngIf="cartItems.length > 0">
+
+      <div class="card" *ngFor="let item of cartItems">
+
+        <button class="remove" (click)="removeItem(item)">
+          <i class="fa fa-times"></i>
+        </button>
+
+        <div class="image">
+          <img [src]="item.thumbnail" [alt]="item.title">
+        </div>
+
+        <div class="content">
+          <h3>{{ item.title }}</h3>
+
+          <p class="price">$ {{ item.price }}</p>
+
+          <!-- QUANTITY -->
+          <div class="quantity">
+            <button (click)="decreaseQty(item)">-</button>
+            <span>{{ item.quantity || 1 }}</span>
+            <button (click)="increaseQty(item)">+</button>
+          </div>
+
+          <p class="total">
+            Total: ${{ (item.price * (item.quantity || 1)) | number:'1.2-2' }}
+          </p>
+
+          <button class="cart-btn">
+            Checkout Item
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TOTAL -->
+    <div class="total-box" *ngIf="cartItems.length > 0">
+      <div class="total-info">
+        <h3>Total: ${{ getTotal() }}</h3>
+        <p>Review your items and continue to checkout</p>
+      </div>
+
+      <button class="checkout-btn">
+        Checkout All
+      </button>
+    </div>
+  </div>
+</div>

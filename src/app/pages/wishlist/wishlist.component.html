@@ -1,0 +1,55 @@
+<div class="wishlist-page">
+
+<h2 class="wishlist-title">
+<i class="fa-solid fa-heart"></i>
+My Wishlist
+</h2>
+
+<p *ngIf="wishlistItems.length === 0" class="empty">
+Your wishlist is empty
+</p>
+
+<div class="wishlist-grid">
+
+<div class="wishlist-card" *ngFor="let item of wishlistItems">
+
+<!-- image -->
+<div class="wishlist-img">
+<img [src]="item.thumbnail" [alt]="item.title">
+</div>
+
+<!-- info -->
+<div class="wishlist-info">
+
+<h3>{{item.title}}</h3>
+
+<!-- rating -->
+<div class="rating">
+<span *ngFor="let star of [1,2,3,4,5]" [class.filled]="star <= item.rating">
+★
+</span>
+</div>
+
+<div class="price">
+${{item.price}}
+</div>
+
+<div class="actions">
+
+<button class="cart-btn" (click)="moveToCart(item)">
+🛒 Add To Cart
+</button>
+
+<button class="remove-btn" (click)="remove(item)">
+<i class="fa-solid fa-trash"></i>
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>

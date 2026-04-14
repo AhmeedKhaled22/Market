@@ -1,0 +1,59 @@
+<div class="shop-container">
+
+  <div class="products-grid">
+
+    <div
+      class="product-card"
+      *ngFor="let product of products; trackBy: trackProduct"
+    >
+
+      <!-- glow -->
+      <div class="card-glow"></div>
+
+      <!-- wishlist -->
+      <div class="wishlist" (click)="toggleWishlist(product)">
+        <i
+          class="fa-heart"
+          [class.fa-solid]="product.liked"
+          [class.fa-regular]="!product.liked">
+        </i>
+      </div>
+
+      <!-- image -->
+      <div class="product-img">
+        <img #productImg [src]="product.thumbnail" [alt]="product.title">
+      </div>
+
+      <!-- info -->
+      <div class="product-info">
+
+        <h3 class="product-title">{{ product.title }}</h3>
+        <p class="product-category">{{ product.category }}</p>
+
+        <!-- rating -->
+        <div class="rating">
+          <span *ngFor="let star of [1,2,3,4,5]" [class.filled]="star <= product.rating">
+            ★
+          </span>
+        </div>
+
+        <div class="price">${{ product.price }}</div>
+        <div class="stock">In Stock: {{ product.stock }}</div>
+
+        <!-- add button -->
+        <button
+          class="add-btn"
+          [class.added]="product.added"
+          (click)="addToCart(product, productImg)"
+        >
+          <span *ngIf="!product.added">+ Add To Cart</span>
+          <span *ngIf="product.added">✔ Added</span>
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

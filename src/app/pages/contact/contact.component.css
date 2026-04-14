@@ -1,0 +1,377 @@
+/* ================= PAGE ================= */
+.contact-page {
+  min-height: calc(100dvh - 70px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 16px;
+}
+
+/* ================= CARD ================= */
+.contact-card {
+  width: min(92vw, 460px);
+  padding: clamp(22px, 4vh, 36px);
+  border-radius: 18px;
+  background: linear-gradient(140deg, #00000000 50%, #121318 100%);
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ================= HEADER ================= */
+.contact-head {
+  text-align: center;
+  margin-bottom: clamp(8px, 2vh, 22px);
+}
+
+.contact-head h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #fff, #00ff99);
+
+  -webkit-background-clip: text; /* للـ Chrome و Safari */
+  background-clip: text; /* القياسي */
+
+  -webkit-text-fill-color: transparent;
+}
+
+.contact-head p {
+  margin-top: 4px;
+  font-size: clamp(10px, 1.6vh, 13px);
+  color: #aaa;
+}
+
+/* ================= FORM ================= */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(10px, 2vh, 18px);
+  position: relative;
+  z-index: 2;
+}
+
+.contact-row {
+  display: flex;
+  gap: 10px;
+}
+
+@media (max-width: 600px) {
+  .contact-row {
+    flex-direction: column;
+  }
+}
+
+/* ================= INPUT ================= */
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  height: clamp(36px, 5vh, 48px);
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid #2a2a2f;
+  background: #111;
+  color: #fff;
+  font-size: clamp(12px, 1.8vh, 14px);
+  transition: 0.25s;
+}
+
+.contact-form textarea {
+  height: clamp(80px, 11vh, 130px);
+  resize: none;
+  padding-top: 10px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #7cffb2;
+  box-shadow: 0 0 0 2px rgba(124, 255, 178, 0.15);
+  outline: none;
+}
+
+/* ================= BUTTON ================= */
+.contact-btn {
+  height: clamp(40px, 6vh, 52px);
+  border-radius: 12px;
+  background: #7cffb2;
+  color: #000;
+  font-weight: 700;
+  font-size: clamp(13px, 1.8vh, 15px);
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(124, 255, 178, 0.25);
+}
+
+/* ================= SOCIAL ================= */
+
+.contact-social {
+  text-align: center;
+  font-size: clamp(11px, 1.6vh, 14px);
+  color: #aaa;
+  margin-top: clamp(10px, 2vh, 20px);
+  position: relative;
+  z-index: 2;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 12px;
+}
+
+/* ================= ICON BASE ================= */
+.social-icons a {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #1a1a1f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+
+  opacity: 0;
+  transform: translateY(20px);
+  animation: popIn 0.6s ease forwards;
+
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1;
+}
+
+/* stagger delay */
+.social-icons a:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.social-icons a:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.social-icons a:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.social-icons a:nth-child(4) {
+  animation-delay: 0.8s;
+}
+
+/* hover */
+.social-icons a:hover {
+  transform: translateY(-6px);
+}
+
+.social-icons a:hover i {
+  transform: scale(1.3);
+}
+.social-icons i {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+/* ================= INSTAGRAM ================= */
+.social-icons a.instagram::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(
+    45deg,
+    #feda75,
+    #fa7e1e,
+    #d62976,
+    #962fbf,
+    #4f5bd5
+  );
+  background-size: 300% 300%;
+  animation: gradientMove 3s ease infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ================= FACEBOOK ================= */
+.social-icons a.facebook::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #1877f2, #145dbf, #1877f2);
+  background-size: 300% 300%;
+  animation: gradientMove 3s ease infinite;
+  z-index: -1;
+}
+
+/* ================= WHATSAPP ================= */
+.social-icons a.whatsapp::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #25d366, #1ebe5d, #25d366);
+  background-size: 300% 300%;
+  animation: gradientMove 3s ease infinite;
+  z-index: -1;
+}
+
+/* ================= LINKEDIN ================= */
+.social-icons a.linkedin::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #0a66c2, #084c95, #0a66c2);
+  background-size: 300% 300%;
+  animation: gradientMove 3s ease infinite;
+  z-index: -1;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes popIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ================= SELECTION ================= */
+
+::selection {
+  background: #7cffb2;
+  color: #000;
+}
+
+/* ================= STARS BACKGROUND ================= */
+.stars-bg {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.stars,
+.stars2,
+.stars3 {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background-repeat: repeat;
+}
+
+/* نجوم قريبة */
+.stars {
+  background-image:
+    radial-gradient(1px 1px, #fff, transparent),
+    radial-gradient(1px 1px, #fff, transparent),
+    radial-gradient(1px 1px, #fff, transparent),
+    radial-gradient(1px 1px, #fff, transparent);
+
+  background-size:
+    100px 100px,
+    150px 150px,
+    200px 200px,
+    260px 260px;
+
+  animation: starMove1 30s linear infinite;
+  opacity: 0.8;
+}
+
+/* نجوم متوسطة */
+.stars2 {
+  background-image:
+    radial-gradient(1.5px 1.5px, #fff, transparent),
+    radial-gradient(1.5px 1.5px, #fff, transparent),
+    radial-gradient(1.5px 1.5px, #fff, transparent);
+
+  background-size:
+    200px 200px,
+    260px 260px,
+    320px 320px;
+
+  animation: starMove2 45s linear infinite;
+  opacity: 0.6;
+}
+
+/* نجوم بعيدة */
+.stars3 {
+  background-image:
+    radial-gradient(2px 2px, #fff, transparent),
+    radial-gradient(2px 2px, #fff, transparent);
+
+  background-size:
+    350px 350px,
+    420px 420px;
+
+  animation: starMove3 70s linear infinite;
+  opacity: 0.9;
+}
+
+/* حركة النجوم */
+
+@keyframes starMove1 {
+  from { transform: translate3d(0,0,0); }
+  to { transform: translate3d(-800px,-1200px,0); }
+}
+
+@keyframes starMove2 {
+  from { transform: translate3d(0,0,0); }
+  to { transform: translate3d(400px,-1400px,0); }
+}
+
+@keyframes starMove3 {
+  from { transform: translate3d(0,0,0); }
+  to { transform: translate3d(-200px,-1800px,0); }
+}
+
+/* twinkle أهدى */
+.stars::after,
+.stars2::after,
+.stars3::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  animation: twinkle 5s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* shooting star */
+.shooting-star {
+  position: absolute;
+  top: 20%;
+  left: -100px;
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(90deg, #fff, transparent);
+  transform: rotate(45deg);
+  animation: shoot 12s linear infinite;
+}
+
+@keyframes shoot {
+  0% { transform: translateX(0) translateY(0) rotate(45deg); opacity: 0; }
+  10% { opacity: 1; }
+  45% { opacity: 1; }
+  100% { transform: translateX(1200px) translateY(600px) rotate(45deg); opacity: 0; }
+}

@@ -1,0 +1,148 @@
+/* ================= BASE SECTION ================= */
+
+.about-section {
+  width: 1200px;
+  max-width: 100%;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* ================= HEADER ================= */
+
+.about-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+
+  width: 100%;
+  padding: 160px 56px 0;
+  text-align: center;
+}
+
+/* Badge */
+
+.about-badge {
+  backdrop-filter: blur(24px);
+  background-color: #f4efef1a;
+
+  border-radius: 32px;
+  padding: 8px 18px;
+
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow:
+    0 4px 12px rgba(144, 141, 141, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.1);
+
+  font-size: 0.9rem;
+}
+
+/* Gradient Title */
+
+.about-title span {
+  background: linear-gradient(
+    90deg,
+    #fafafa 0%,
+    rgba(249, 249, 249, 0.4) 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+
+/* ================= CONTENT ================= */
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+
+  width: 100%;
+  padding: 0 200px 120px;
+}
+
+.about-content p {
+  color: #ffffff;
+  line-height: 1.9;
+  font-size: 1rem;
+  max-width: 900px;
+  text-align: center;
+}
+
+/* Image */
+
+.about-content img {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 22px;
+  object-fit: cover;
+  margin: 50px 0;
+}
+
+/* ================= LARGE LAPTOP ================= */
+
+@media (max-width: 1200px) {
+
+  .about-content {
+    padding: 0 100px 100px;
+  }
+
+}
+
+/* ================= TABLET ================= */
+
+@media (max-width: 992px) {
+
+  .about-header {
+    padding: 120px 40px 0;
+  }
+
+  .about-content {
+    padding: 0 60px 80px;
+  }
+
+  .about-content p {
+    font-size: 0.95rem;
+  }
+
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+  .about-header {
+    padding: 80px 10px 0;   /* شبه مفيش padding */
+  }
+
+  .about-content {
+    padding: 0 10px 40px;   /* 10px بس يمين وشمال */
+    gap: 16px;
+  }
+
+  .about-content p {
+    text-align: left;
+  }
+  .about-content img {
+    margin: 30px 0;
+    border-radius: 16px;
+  }
+  .about-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
