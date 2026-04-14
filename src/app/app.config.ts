@@ -4,14 +4,19 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 
 import { routes } from './app.routes';
 
+// Firebase
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 
+// ⚠️ IMPORTANT: عدّل المسار حسب مكان environment عندك
+import { environment } from './core/env/environment';
 export const appConfig: ApplicationConfig = {
   providers: [
 
+    // Angular performance
     provideZoneChangeDetection({ eventCoalescing: true }),
 
+    // Router
     provideRouter(
       routes,
       withInMemoryScrolling({
@@ -19,23 +24,15 @@ export const appConfig: ApplicationConfig = {
       })
     ),
 
-    provideHttpClient(
-      withFetch(),
-    ),
+    // HTTP
+    provideHttpClient(withFetch()),
 
-    // Firebase
+    // Firebase App init
     provideFirebaseApp(() =>
-      initializeApp({
-        apiKey: "AIzaSyBRwCps9bjUWCNPV2WK3y8ElP1Bdz8zPok",
-        authDomain: "market-23f05.firebaseapp.com",
-        projectId: "market-23f05",
-        storageBucket: "market-23f05.appspot.com",
-        messagingSenderId: "674816876191",
-        appId: "1:674816876191:web:306b2ebd7f09c721730caa",
-        measurementId: "G-TX4WM7QCTM"
-      })
+      initializeApp(environment.firebase)
     ),
 
+    // Firebase Auth
     provideAuth(() => getAuth())
 
   ]
