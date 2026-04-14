@@ -17,12 +17,13 @@ import { guestGuard } from './guest.guard';
 export const routes: Routes = [
 
   // أول ما الموقع يفتح
-{ path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+
   // الصفحات المحمية
   {
     path: 'home',
     component: HomeComponent,
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     data: { navbar: 'protected' },
   },
 
@@ -42,7 +43,7 @@ export const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     data: { navbar: 'protected' }
   },
 
@@ -50,21 +51,21 @@ export const routes: Routes = [
   {
     path: 'wishlist',
     component: WishlistComponent,
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     data: { navbar: 'protected' }
   },
 
   {
     path: 'about',
     component: aboutComponent,
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     data: { navbar: 'protected' },
   },
 
   {
     path: 'contact',
     component: contactComponent,
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     data: { navbar: 'protected' },
   },
 
@@ -72,21 +73,21 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    // canActivate: [guestGuard],
+    canActivate: [guestGuard],
     data: { navbar: 'auth' },
   },
 
   {
     path: 'register',
     component: RegisterComponent,
-    // canActivate: [guestGuard],
+    canActivate: [guestGuard],
     data: { navbar: 'auth' },
   },
 
   {
     path: 'forget-password',
     component: ForgetPasswordComponent,
-    // canActivate: [guestGuard],
+    canActivate: [guestGuard],
     data: { navbar: 'auth' },
   },
 
