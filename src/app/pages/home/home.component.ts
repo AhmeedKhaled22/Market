@@ -129,95 +129,95 @@ export class HomeComponent implements OnInit {
           }
 
           if (cat.slug === 'vehicle') {
-            return { ...cat, image: '/assets/images/ferari.png' };
+            return { ...cat, image: 'assets/images/ferari.png' };
           }
 
           if (cat.slug === 'laptops') {
-            return { ...cat, image: '/assets/images/labtob.png' };
+            return { ...cat, image: 'assets/images/labtob.png' };
           }
 
           if (cat.slug === 'motorcycle') {
-            return { ...cat, image: '/assets/images/generated.png' };
+            return { ...cat, image: 'assets/images/generated.png' };
           }
 
           if (cat.slug === 'beauty') {
-            return { ...cat, image: '/assets/images/beauty.png' };
+            return { ...cat, image: 'assets/images/beauty.png' };
           }
 
           if (cat.slug === 'fragrances') {
-            return { ...cat, image: '/assets/images/perfum.jpeg' };
+            return { ...cat, image: 'assets/images/perfum.jpeg' };
           }
 
           if (cat.slug === 'furniture') {
-            return { ...cat, image: '/assets/images/furniture.png' };
+            return { ...cat, image: 'assets/images/furniture.png' };
           }
 
           if (cat.slug === 'groceries') {
-            return { ...cat, image: '/assets/images/organicfood.png' };
+            return { ...cat, image: 'assets/images/organicfood.png' };
           }
 
           if (cat.slug === 'home-decoration') {
-            return { ...cat, image: '/assets/images/dicore.png' };
+            return { ...cat, image: 'assets/images/dicore.png' };
           }
 
           if (cat.slug === 'kitchen-accessories') {
-            return { ...cat, image: '/assets/images/kitchen-accessories.png' };
+            return { ...cat, image: 'assets/images/kitchen-accessories.png' };
           }
 
           if (cat.slug === 'mens-shirts') {
-            return { ...cat, image: '/assets/images/manshirt.png' };
+            return { ...cat, image: 'assets/images/manshirt.png' };
           }
 
           if (cat.slug === 'mens-shoes') {
-            return { ...cat, image: '/assets/images/shoesman.png' };
+            return { ...cat, image: 'assets/images/shoesman.png' };
           }
 
           if (cat.slug === 'mens-watches') {
-            return { ...cat, image: '/assets/images/mens-watches.png' };
+            return { ...cat, image: 'assets/images/mens-watches.png' };
           }
 
           if (cat.slug === 'mobile-accessories') {
-            return { ...cat, image: '/assets/images/mobile-accessories.png' };
+            return { ...cat, image: 'assets/images/mobile-accessories.png' };
           }
 
           if (cat.slug === 'skin-care') {
-            return { ...cat, image: '/assets/images/skincare.png' };
+            return { ...cat, image: 'assets/images/skincare.png' };
           }
 
           if (cat.slug === 'sports-accessories') {
-            return { ...cat, image: '/assets/images/sports.png' };
+            return { ...cat, image: 'assets/images/sports.png' };
           }
 
           if (cat.slug === 'sunglasses') {
-            return { ...cat, image: '/assets/images/sunglasses.png' };
+            return { ...cat, image: 'assets/images/sunglasses.png' };
           }
 
           if (cat.slug === 'tablets') {
-            return { ...cat, image: '/assets/images/tablets.png' };
+            return { ...cat, image: 'assets/images/tablets.png' };
           }
 
           if (cat.slug === 'tops') {
-            return { ...cat, image: '/assets/images/tops.jpeg' };
+            return { ...cat, image: 'assets/images/tops.jpeg' };
           }
 
           if (cat.slug === 'womens-bags') {
-            return { ...cat, image: '/assets/images/bagswomen.png' };
+            return { ...cat, image: 'assets/images/bagswomen.png' };
           }
 
           if (cat.slug === 'womens-dresses') {
-            return { ...cat, image: '/assets/images/womens-dresses.png' };
+            return { ...cat, image: 'assets/images/womens-dresses.png' };
           }
 
           if (cat.slug === 'womens-jewellery') {
-            return { ...cat, image: '/assets/images/womens-jewellery.png' };
+            return { ...cat, image: 'assets/images/womens-jewellery.png' };
           }
 
           if (cat.slug === 'womens-shoes') {
-            return { ...cat, image: '/assets/images/shoseWomen.png' };
+            return { ...cat, image: 'assets/images/shoseWomen.png' };
           }
 
           if (cat.slug === 'womens-watches') {
-            return { ...cat, image: '/assets/images/women-waches.jpeg' };
+            return { ...cat, image: 'assets/images/women-waches.jpeg' };
           }
 
           return {
