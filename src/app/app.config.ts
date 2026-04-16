@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import { provideRouter, withInMemoryScrolling, withHashLocation } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 
 import { routes } from './app.routes';
@@ -17,9 +17,10 @@ export const appConfig: ApplicationConfig = {
     // تحسين الأداء
     provideZoneChangeDetection({ eventCoalescing: true }),
 
-    // Router
+    // Router (🔥 المهم هنا)
     provideRouter(
       routes,
+      withHashLocation(), // 👈 ده اللي بيحل 404
       withInMemoryScrolling({
         scrollPositionRestoration: 'top',
         anchorScrolling: 'enabled'
