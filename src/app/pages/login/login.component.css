@@ -1,20 +1,12 @@
 /* ================= GLOBAL ================= */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  overflow: hidden;
-  font-family: "DM Sans", sans-serif;
-  background: #0f1117;
+::selection {
+  background: #7cffb2;
+  color: #000;
 }
 
 /* ================= PAGE ================= */
+
 .login-page {
   min-height: calc(100dvh - 70px);
   display: flex;
@@ -24,40 +16,44 @@ body {
 }
 
 /* ================= CARD ================= */
+
 .login-card {
   width: min(92vw, 420px);
-  padding: 24px;
+  padding: clamp(14px, 3vh, 26px);
   border-radius: 18px;
-  background: linear-gradient(180deg, #00000000 0%, #121318 100%);
+  background: linear-gradient(180deg, transparent 0%, #121318 100%);
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
 }
 
 /* ================= HEADER ================= */
+
 .login-head {
   text-align: center;
-  margin-bottom: 18px;
+  margin-bottom: clamp(8px, 2vh, 24px);
 }
 
 .login-head h1 {
   margin: 0;
-  font-size: 20px;
+  font-size: clamp(16px, 2.2vh, 22px);
   color: #fff;
 }
 
 .login-head p {
   margin-top: 4px;
-  font-size: 12px;
+  font-size: clamp(10px, 1.6vh, 13px);
   color: #aaa;
 }
 
 /* ================= FORM ================= */
+
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: clamp(6px, 1.5vh, 16px);
 }
 
 /* ================= FIELD ================= */
+
 .field {
   display: flex;
   flex-direction: column;
@@ -71,14 +67,18 @@ body {
 }
 
 .field input {
-  height: 40px;
+  height: clamp(34px, 5vh, 46px);
   padding: 0 12px;
   border-radius: 12px;
   border: 1px solid #2a2a2f;
   background: #111;
   color: #fff;
-  font-size: 12px;
+  font-size: clamp(11px, 1.8vh, 13px);
   transition: 0.25s;
+}
+
+.field input::placeholder {
+  color: #666;
 }
 
 .field input:focus {
@@ -87,226 +87,16 @@ body {
   outline: none;
 }
 
-.field input::placeholder {
-  color: #666;
-}
-
 /* ================= ERROR ================= */
+
 .error {
   min-height: 14px;
   margin-top: 5px;
-  font-size: clamp(9px, 1.5vh, 11px);
-  color: #1fc68e !important;
-}
-
-.error,
-.error span,
-.error small,
-.error p,
-.error div {
-  color: #1fc68e !important;
-}
-
-input[type="checkbox"] {
-  accent-color: #7cffb2;
-}
-
-/* ================= BUTTON ================= */
-.btn {
-  height: 42px;
-  border-radius: 12px;
-  background: #7cffb2;
-  color: #000;
-  font-weight: 700;
-  font-size: 13px;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
-  margin-top: 4px;
-}
-
-.btn:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 12px 30px rgba(124, 255, 178, 0.25);
-}
-
-.btn:disabled {
-  opacity: 0.6;
-}
-
-/* ================= FOOTER ================= */
-.footer {
-  text-align: center;
   font-size: 11px;
-  color: #aaa;
-  margin-top: 8px;
+  color: #1fc68e !important;
 }
 
-.footer a {
-  cursor: pointer;
-  color: #7cffb2;
-  text-decoration: none;
-}
-
-/* ================= SMART AUTO SCALE ================= */
-
-.login-card {
-  width: min(92vw, 420px);
-  padding: clamp(14px, 3vh, 26px);
-  border-radius: 18px;
-}
-
-.login-form {
-  gap: clamp(6px, 1.5vh, 16px);
-}
-
-.login-head {
-  margin-bottom: clamp(8px, 2vh, 24px);
-}
-
-.login-head h1 {
-  font-size: clamp(16px, 2.2vh, 22px);
-}
-
-.login-head p {
-  font-size: clamp(10px, 1.6vh, 13px);
-}
-
-.field input {
-  height: clamp(34px, 5vh, 46px);
-  font-size: clamp(11px, 1.8vh, 13px);
-}
-
-.btn {
-  height: clamp(36px, 5vh, 48px);
-  font-size: clamp(12px, 1.8vh, 14px);
-}
-
-::selection {
-  background: #7cffb2;
-  color: #000;
-}
-
-/* ================= BACKGROUND ================= */
-
-.stars-bg {
-  position: fixed;
-  inset: 0;
-  background: #000;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.stars,
-.stars2,
-.stars3 {
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  background-repeat: repeat;
-}
-
-/* نجوم قريبة */
-.stars {
-  background-image:
-    radial-gradient(1px 1px, #fff, transparent),
-    radial-gradient(1px 1px, #fff, transparent),
-    radial-gradient(1px 1px, #fff, transparent),
-    radial-gradient(1px 1px, #fff, transparent);
-
-  background-size:
-    100px 100px,
-    150px 150px,
-    200px 200px,
-    260px 260px;
-
-  animation: starMove1 30s linear infinite;
-  opacity: 0.8;
-}
-
-/* نجوم متوسطة */
-.stars2 {
-  background-image:
-    radial-gradient(1.5px 1.5px, #fff, transparent),
-    radial-gradient(1.5px 1.5px, #fff, transparent),
-    radial-gradient(1.5px 1.5px, #fff, transparent);
-
-  background-size:
-    200px 200px,
-    260px 260px,
-    320px 320px;
-
-  animation: starMove2 45s linear infinite;
-  opacity: 0.6;
-}
-
-/* نجوم بعيدة */
-.stars3 {
-  background-image:
-    radial-gradient(2px 2px, #fff, transparent),
-    radial-gradient(2px 2px, #fff, transparent);
-
-  background-size:
-    350px 350px,
-    420px 420px;
-
-  animation: starMove3 70s linear infinite;
-  opacity: 0.9;
-}
-
-/* حركة النجوم */
-
-@keyframes starMove1 {
-  from { transform: translate3d(0,0,0); }
-  to { transform: translate3d(-800px,-1200px,0); }
-}
-
-@keyframes starMove2 {
-  from { transform: translate3d(0,0,0); }
-  to { transform: translate3d(400px,-1400px,0); }
-}
-
-@keyframes starMove3 {
-  from { transform: translate3d(0,0,0); }
-  to { transform: translate3d(-200px,-1800px,0); }
-}
-
-/* twinkle أهدى */
-.stars::after,
-.stars2::after,
-.stars3::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  animation: twinkle 5s ease-in-out infinite alternate;
-}
-
-@keyframes twinkle {
-  from { opacity: 0.6; }
-  to { opacity: 1; }
-}
-
-/* shooting star */
-.shooting-star {
-  position: absolute;
-  top: 20%;
-  left: -100px;
-  width: 150px;
-  height: 2px;
-  background: linear-gradient(90deg, #fff, transparent);
-  transform: rotate(45deg);
-  animation: shoot 12s linear infinite;
-}
-
-@keyframes shoot {
-  0% { transform: translateX(0) translateY(0) rotate(45deg); opacity: 0; }
-  10% { opacity: 1; }
-  45% { opacity: 1; }
-  100% { transform: translateX(1200px) translateY(600px) rotate(45deg); opacity: 0; }
-}
-
-/* ================= REMEMBER + FORGET ================= */
+/* ================= ROW ================= */
 
 .row-between {
   display: flex;
@@ -318,16 +108,22 @@ input[type="checkbox"] {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #ddd;
   font-size: 11px;
+  color: #ddd;
 }
+
+input[type="checkbox"] {
+  accent-color: #7cffb2;
+}
+
+/* ================= LINKS ================= */
 
 .link {
   font-size: 11px;
   color: #9fffcf;
   text-decoration: none;
-  transition: 0.25s;
   position: relative;
+  transition: 0.25s;
 }
 
 .link:hover {
@@ -349,6 +145,159 @@ input[type="checkbox"] {
 .link:hover::after {
   width: 100%;
 }
-.divider span{
+
+/* ================= BUTTON ================= */
+
+.btn {
+  height: clamp(36px, 5vh, 48px);
+  border-radius: 12px;
+  background: #7cffb2;
+  color: #000;
+  font-weight: 700;
+  font-size: clamp(12px, 1.8vh, 14px);
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 4px;
+}
+
+.btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 30px rgba(124, 255, 178, 0.25);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+}
+
+/* ================= FOOTER ================= */
+
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: #aaa;
+  margin-top: 8px;
+}
+
+.footer a {
+  color: #7cffb2;
+  text-decoration: none;
+}
+
+/* ================= BACKGROUND ================= */
+
+.stars-bg {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  transform: translateZ(0);
+}
+
+/* ================= STAR LAYERS ================= */
+
+.stars,
+.stars2,
+.stars3 {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background-repeat: repeat;
+  will-change: transform;
+}
+
+/* ================= LAYER 1 ================= */
+
+.stars {
+  background-image:
+    radial-gradient(1px 1px, #fff, transparent),
+    radial-gradient(1px 1px, #fff, transparent),
+    radial-gradient(1px 1px, #fff, transparent),
+    radial-gradient(1px 1px, #fff, transparent);
+
+  background-size: 100px 100px, 150px 150px, 200px 200px, 260px 260px;
+  opacity: 0.8;
+  animation: move1 30s linear infinite;
+}
+
+/* ================= LAYER 2 ================= */
+
+.stars2 {
+  background-image:
+    radial-gradient(1.5px 1.5px, #fff, transparent),
+    radial-gradient(1.5px 1.5px, #fff, transparent),
+    radial-gradient(1.5px 1.5px, #fff, transparent);
+
+  background-size: 200px 200px, 260px 260px, 320px 320px;
+  opacity: 0.6;
+  animation: move2 45s linear infinite;
+}
+
+/* ================= LAYER 3 ================= */
+
+.stars3 {
+  background-image:
+    radial-gradient(2px 2px, #fff, transparent),
+    radial-gradient(2px 2px, #fff, transparent);
+
+  background-size: 350px 350px, 420px 420px;
+  opacity: 0.9;
+  animation: move3 70s linear infinite;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes move1 {
+  to { transform: translate3d(-800px, -1200px, 0); }
+}
+
+@keyframes move2 {
+  to { transform: translate3d(400px, -1400px, 0); }
+}
+
+@keyframes move3 {
+  to { transform: translate3d(-200px, -1800px, 0); }
+}
+
+/* ================= EFFECTS ================= */
+
+.stars::after,
+.stars2::after,
+.stars3::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+.shooting-star {
+  position: absolute;
+  top: 20%;
+  left: -100px;
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(90deg, #fff, transparent);
+  transform: rotate(45deg);
+  animation: shoot 12s linear infinite;
+  will-change: transform, opacity;
+}
+
+@keyframes shoot {
+  0% { transform: translate(0,0) rotate(45deg); opacity: 0; }
+  10%, 45% { opacity: 1; }
+  100% { transform: translate(1200px, 600px) rotate(45deg); opacity: 0; }
+}
+
+/* ================= UTIL ================= */
+
+.divider span {
   color: #aaa;
 }

@@ -1,82 +1,104 @@
-import { AuthService } from '../../core/services/auth/auth';
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import {
   FormGroup,
   FormControl,
   Validators,
-  ReactiveFormsModule,
+  ReactiveFormsModule
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
+
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CommonModule,
-    RouterModule
-  ],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterComponent {
 
-  private readonly auth: AuthService = inject(AuthService);
-  private readonly router = inject(Router);
+  private auth = inject(AuthService);
+  private router = inject(Router);
 
-  isloading: boolean = false;
-  succesMsg: boolean = false;
-  errorMsg: boolean = false;
+  isloading = false;
+  succesMsg = false;
+  errorMsg: string | null = null;
 
-  registerForm: FormGroup = new FormGroup({
-    name: new FormControl(null, [
-      Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(20),
-    ]),
-    email: new FormControl(null, [
-      Validators.required,
-      Validators.email
-    ]),
-    password: new FormControl(null, [
-      Validators.required,
-      Validators.pattern(/^[A-Z]\w{6,}$/),
-    ]),
-    age: new FormControl(null, [
-      Validators.required,
-      Validators.pattern(/^(1[0-9]|[2-7][0-9]|80)$/),
-    ]),
-    phone: new FormControl(null, [
-      Validators.required,
-      Validators.pattern(/^01[0125][0-9]{8}$/),
-    ]),
+  // 🔥 IMPORTANT: updateOn blur = no lag while typing
+  registerForm = new FormGroup({
+    name: new FormControl('', {
+      validators: [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20)
+      ],
+      updateOn: 'blur'
+    }),
+
+    email: new FormControl('', {
+      validators: [Validators.required, Validators.email],
+      updateOn: 'blur'
+    }),
+
+    password: new FormControl('', {
+      validators: [
+        Validators.required,
+        Validators.minLength(6)
+      ],
+      updateOn: 'blur'
+    }),
+
+    age: new FormControl('', {
+      validators: [Validators.required],
+      updateOn: 'blur'
+    }),
+
+    phone: new FormControl('', {
+      validators: [Validators.required],
+      updateOn: 'blur'
+    }),
   });
 
   submitRegisterForm(): void {
+    if (this.registerForm.invalid) return;
+
     this.isloading = true;
+    this.errorMsg = null;
+    this.succesMsg = false;
 
-    this.auth.sendRegisterData(this.registerForm.value).subscribe({
-      next: (res: any) => {
+    const email = this.registerForm.get('email')?.value ?? '';
+    const password = this.registerForm.get('password')?.value ?? '';
+
+    this.auth.register(email, password)
+      .then(() => {
         this.isloading = false;
+        this.succesMsg = true;
 
-        if (res.msg === 'done') {
-          this.succesMsg = true;
+        this.registerForm.reset();
 
-          setTimeout(() => {
-            this.registerForm.reset();
-            this.router.navigate(['/login']); // ✅ تحويل للوجن
-          }, 1000);
-        }
-      },
-
-      error: (err: HttpErrorResponse) => {
-        console.log(err);
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 600);
+      })
+      .catch(err => {
         this.isloading = false;
         this.succesMsg = false;
-        this.errorMsg = true;
-      },
-    });
+
+        switch (err.code) {
+          case 'auth/email-already-in-use':
+            this.errorMsg = 'Email already exists';
+            break;
+
+          case 'auth/weak-password':
+            this.errorMsg = 'Password must be at least 6 characters';
+            break;
+
+          default:
+            this.errorMsg = 'Something went wrong';
+        }
+      });
   }
 }

@@ -1,21 +1,46 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import {
+  Auth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+  signOut,
+  signInWithRedirect,
+  FacebookAuthProvider
+} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private LOGIN_URL = 'https://note-sigma-black.vercel.app/api/v1/users/signIn';
+  private auth = inject(Auth);
 
-  isLogined = new BehaviorSubject<boolean>(this.hasToken());
+  // ✅ Register
+  register(email: string, password: string) {
+    return createUserWithEmailAndPassword(this.auth, email, password);
+  }
 
-  constructor() {}
+  // ✅ Login
+  login(email: string, password: string) {
+    return signInWithEmailAndPassword(this.auth, email, password);
+  }
 
-  private hasToken(): boolean {
-    return !!(
-      localStorage.getItem('token') ||
-      sessionStorage.getItem('token')
-    );
+  // ✅ Google Login
+  loginWithGoogle() {
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(this.auth, provider);
+  }
+
+  // ✅ Facebook Login
+  loginWithFacebook() {
+    const provider = new FacebookAuthProvider();
+    return signInWithPopup(this.auth, provider);
+  }
+
+  // ✅ Logout
+  logout() {
+    return signOut(this.auth);
   }
 }
