@@ -22,11 +22,18 @@ export class LoginComponent {
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6)
+    ]),
+    remember: new FormControl(false) // ✅ الحل الأساسي
   });
 
   onSubmit() {
+    if (this.loginForm.invalid) return;
+
     this.isSubmitting = true;
+    this.errorMsg = null;
 
     const email = this.loginForm.value.email ?? '';
     const password = this.loginForm.value.password ?? '';
@@ -38,7 +45,7 @@ export class LoginComponent {
       })
       .catch(err => {
         this.isSubmitting = false;
-        this.errorMsg = err.message;
+        this.errorMsg = err.message || 'Login failed';
       });
   }
 

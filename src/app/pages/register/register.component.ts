@@ -1,13 +1,13 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormControl,
   Validators,
   ReactiveFormsModule
 } from '@angular/forms';
+
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
@@ -15,10 +15,9 @@ import { AuthService } from '../../core/services/auth.service';
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule, RouterModule],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
 
   private auth = inject(AuthService);
   private router = inject(Router);
@@ -27,43 +26,38 @@ export class RegisterComponent {
   succesMsg = false;
   errorMsg: string | null = null;
 
-  // 🔥 IMPORTANT: updateOn blur = no lag while typing
-  registerForm = new FormGroup({
-    name: new FormControl('', {
-      validators: [
+  registerForm!: FormGroup;
+
+  ngOnInit(): void {
+    this.registerForm = new FormGroup({
+      name: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(20)
-      ],
-      updateOn: 'blur'
-    }),
+      ]),
 
-    email: new FormControl('', {
-      validators: [Validators.required, Validators.email],
-      updateOn: 'blur'
-    }),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email
+      ]),
 
-    password: new FormControl('', {
-      validators: [
+      password: new FormControl('', [
         Validators.required,
         Validators.minLength(6)
-      ],
-      updateOn: 'blur'
-    }),
+      ]),
 
-    age: new FormControl('', {
-      validators: [Validators.required],
-      updateOn: 'blur'
-    }),
+      age: new FormControl('', [
+        Validators.required
+      ]),
 
-    phone: new FormControl('', {
-      validators: [Validators.required],
-      updateOn: 'blur'
-    }),
-  });
+      phone: new FormControl('', [
+        Validators.required
+      ]),
+    });
+  }
 
   submitRegisterForm(): void {
-    if (this.registerForm.invalid) return;
+    if (!this.registerForm || this.registerForm.invalid) return;
 
     this.isloading = true;
     this.errorMsg = null;
