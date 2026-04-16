@@ -5,8 +5,10 @@ import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ShopComponent } from './pages/shop/shop.component';
 import { NotfoundComponent } from './pages/notfound/notfound.component';
-import { aboutComponent } from './pages/About/about.component';
-import { contactComponent } from './pages/contact/contact.component';
+
+import { aboutComponent as AboutComponent } from './pages/About/about.component';
+import { contactComponent as ContactComponent } from './pages/contact/contact.component';
+
 import { LoginComponent } from './pages/login/login.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
@@ -16,10 +18,8 @@ import { guestGuard } from './guest.guard';
 
 export const routes: Routes = [
 
-  // أول ما الموقع يفتح
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 
-  // الصفحات المحمية
   {
     path: 'home',
     component: HomeComponent,
@@ -39,7 +39,6 @@ export const routes: Routes = [
     data: { navbar: 'protected' }
   },
 
-  // 🛒 cart
   {
     path: 'cart',
     component: CartComponent,
@@ -47,7 +46,6 @@ export const routes: Routes = [
     data: { navbar: 'protected' }
   },
 
-  // ❤️ wishlist
   {
     path: 'wishlist',
     component: WishlistComponent,
@@ -57,19 +55,18 @@ export const routes: Routes = [
 
   {
     path: 'about',
-    component: aboutComponent,
+    component: AboutComponent,
     canActivate: [authGuard],
     data: { navbar: 'protected' },
   },
 
   {
     path: 'contact',
-    component: contactComponent,
+    component: ContactComponent,
     canActivate: [authGuard],
     data: { navbar: 'protected' },
   },
 
-  // صفحات الدخول
   {
     path: 'login',
     component: LoginComponent,
@@ -91,6 +88,5 @@ export const routes: Routes = [
     data: { navbar: 'auth' },
   },
 
-  // 404
   { path: '**', component: NotfoundComponent },
 ];

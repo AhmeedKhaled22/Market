@@ -8,32 +8,34 @@ import { routes } from './app.routes';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 
-// ⚠️ IMPORTANT: عدّل المسار حسب مكان environment عندك
+// environment
 import { environment } from './core/env/environment';
+
 export const appConfig: ApplicationConfig = {
   providers: [
 
-    // Angular performance
+    // تحسين الأداء
     provideZoneChangeDetection({ eventCoalescing: true }),
 
     // Router
     provideRouter(
       routes,
       withInMemoryScrolling({
-        scrollPositionRestoration: 'top'
+        scrollPositionRestoration: 'top',
+        anchorScrolling: 'enabled'
       })
     ),
 
-    // HTTP
+    // HTTP Client
     provideHttpClient(withFetch()),
 
-    // Firebase App init
+    // Firebase App
     provideFirebaseApp(() =>
       initializeApp(environment.firebase)
     ),
 
     // Firebase Auth
-    provideAuth(() => getAuth())
+    provideAuth(() => getAuth()),
 
   ]
 };

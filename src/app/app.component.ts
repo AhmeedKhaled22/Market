@@ -1,10 +1,11 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs';
 
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { FooterComponent } from './layouts/footer/footer.component';
+import { AuthService } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -17,12 +18,15 @@ import { FooterComponent } from './layouts/footer/footer.component';
   ],
   templateUrl: './app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   hideFooter = false;
-  showScroll = false; // 👈 زرار السهم
+  showScroll = false;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {
     this.updateFooterVisibility(this.router.url);
 
     this.router.events
@@ -32,6 +36,12 @@ export class AppComponent {
       });
   }
 
+  ngOnInit(): void {
+    // مهم جدًا لــ Google/Facebook redirect
+    this.authService.handleRedirectResult()
+      .catch(err => console.log('Redirect error:', err));
+  }
+
   private updateFooterVisibility(url: string): void {
     this.hideFooter =
       url.startsWith('/login') ||
@@ -39,13 +49,11 @@ export class AppComponent {
       url.startsWith('/forget-password');
   }
 
-  // 👇 يظهر زرار السهم لما تنزل
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.showScroll = window.scrollY > 300;
   }
 
-  // 👇 يرجعك لأول الصفحة
   scrollToTop() {
     window.scrollTo({
       top: 0,
